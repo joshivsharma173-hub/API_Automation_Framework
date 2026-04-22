@@ -1,0 +1,15 @@
+# Maven build output
+target/
+
+# Reports
+reports/
+
+# Allure results
+allure-results/
+
+# IDE files
+.vscode/
+.idea/
+
+# Config with sensitive token
+src/test/resources/config.properties
