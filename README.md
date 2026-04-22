@@ -27,37 +27,39 @@ demonstrating industry-standard design patterns, data-driven testing, and CI/CD 
 ---
 
 ## Framework Architecture
+
+```
 src/test/java/com/portfolio/
 │
 ├── base/
-│   └── BaseTest.java           → RequestSpecification setup, BeforeSuite config
+│   └── BaseTest.java                → RequestSpecification setup, BeforeSuite config
 │
 ├── endpoints/
-│   └── UserEndpoints.java      → Service layer — all API calls centralized here
+│   └── UserEndpoints.java           → Service layer — all API calls centralized here
 │
 ├── payload/
-│   └── User.java               → POJO for request/response serialization
+│   └── User.java                    → POJO for request/response serialization
 │
 ├── tests/
-│   ├── GetUserTest.java        → GET operation tests
-│   ├── UserFlowTest.java       → Full CRUD flow with API chaining
-│   ├── DataDrivenUserTest.java → JSON data-driven tests
-│   └── ExcelDrivenUserTest.java→ Excel data-driven tests
+│   ├── GetUserTest.java             → GET operation tests
+│   ├── UserFlowTest.java            → Full CRUD flow with API chaining
+│   ├── DataDrivenUserTest.java      → JSON data-driven tests
+│   └── ExcelDrivenUserTest.java     → Excel data-driven tests
 │
 └── utils/
-├── ConfigReader.java        → Reads config.properties
-├── JsonDataProvider.java    → Parses JSON test data
-├── ExcelDataProvider.java   → Parses Excel test data
-├── ExtentReportManager.java → Initializes ExtentReports
-└── ExtentTestListener.java  → TestNG listener for auto reporting
-src/test/resources/
-├── config.properties           → Base URL & auth token (gitignored)
-├── testng.xml                  → Test suite configuration
-└── testdata/
-├── users.json              → JSON test data
-└── users.xlsx              → Excel test data
+    ├── ConfigReader.java             → Reads config.properties
+    ├── JsonDataProvider.java         → Parses JSON test data
+    ├── ExcelDataProvider.java        → Parses Excel test data
+    ├── ExtentReportManager.java      → Initializes ExtentReports
+    └── ExtentTestListener.java       → TestNG listener for auto reporting
 
----
+src/test/resources/
+├── config.properties                → Base URL & auth token (gitignored)
+├── testng.xml                       → Test suite configuration
+└── testdata/
+    ├── users.json                   → JSON test data
+    └── users.xlsx                   → Excel test data
+```
 
 ## Design Patterns Used
 
