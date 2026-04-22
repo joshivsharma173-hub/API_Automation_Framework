@@ -1,6 +1,6 @@
 # RestAssured API Automation Framework
 
-![API Tests](https://github.com/YOUR_USERNAME/restassured-portfolio/actions/workflows/api-tests.yml/badge.svg)
+![API Tests](https://github.com/joshivsharma173-hub/restassured-portfolio/actions/workflows/api-tests.yml/badge.svg)
 ![Java](https://img.shields.io/badge/Java-17-orange)
 ![Maven](https://img.shields.io/badge/Maven-3.9.14-blue)
 ![RestAssured](https://img.shields.io/badge/RestAssured-5.4.0-green)
