@@ -1,0 +1,45 @@
+name: API Automation Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Create config.properties
+        run: |
+          mkdir -p src/test/resources
+          echo "base.url=https://gorest.co.in/public/v2" > src/test/resources/config.properties
+          echo "token=${{ secrets.GOREST_TOKEN }}" >> src/test/resources/config.properties
+
+      - name: Run API Tests
+        run: mvn test
+
+      - name: Upload Extent Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: ExtentReport
+          path: reports/ExtentReport.html
+
+      - name: Upload Surefire Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: Surefire-Reports
+          path: target/surefire-reports/
