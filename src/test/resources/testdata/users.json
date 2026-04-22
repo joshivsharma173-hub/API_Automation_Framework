@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Aisha Sharma",
+    "email": "aisha.sharma{{time}}@test.com",
+    "gender": "female",
+    "status": "active"
+  },
+  {
+    "name": "Rahul Verma",
+    "email": "rahul.verma{{time}}@test.com",
+    "gender": "male",
+    "status": "active"
+  },
+  {
+    "name": "Priya Singh",
+    "email": "priya.singh{{time}}@test.com",
+    "gender": "female",
+    "status": "inactive"
+  }
+]
