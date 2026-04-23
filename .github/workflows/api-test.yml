@@ -27,6 +27,12 @@ jobs:
           echo "base.url=https://gorest.co.in/public/v2" > src/test/resources/config.properties
           echo "token=${{ secrets.GOREST_TOKEN }}" >> src/test/resources/config.properties
 
+      # ← ADD THIS NEW STEP HERE
+      - name: Test GoRest Connection
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.GOREST_TOKEN }}" \
+          https://gorest.co.in/public/v2/users
+
       - name: Run API Tests
         run: mvn test
 
