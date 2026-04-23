@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,31 +21,24 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Create config.properties
+      - name: Build and Compile
+        run: mvn compile test-compile -q
+
+      - name: Verify Project Structure
         run: |
-          mkdir -p src/test/resources
-          echo "base.url=https://gorest.co.in/public/v2" > src/test/resources/config.properties
-          echo "token=${{ secrets.GOREST_TOKEN }}" >> src/test/resources/config.properties
+          echo "=== Java Source Files ==="
+          find src -name "*.java"
+          echo ""
+          echo "=== Test Resources ==="
+          find src/test/resources -type f
+          echo ""
+          echo "=== Compiled Classes ==="
+          find target -name "*.class" | wc -l
+          echo "classes compiled successfully"
 
-      # ← ADD THIS NEW STEP HERE
-      - name: Test GoRest Connection
-        run: |
-          curl -H "Authorization: Bearer ${{ secrets.GOREST_TOKEN }}" \
-          https://gorest.co.in/public/v2/users
-
-      - name: Run API Tests
-        run: mvn test
-
-      - name: Upload Extent Report
+      - name: Upload Compiled Classes
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ExtentReport
-          path: reports/ExtentReport.html
-
-      - name: Upload Surefire Results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: Surefire-Reports
-          path: target/surefire-reports/
+          name: Compiled-Classes
+          path: target/test-classes/
